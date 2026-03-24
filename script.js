@@ -7,8 +7,6 @@ var elev;
 var cloudHight;
 var fielDiff;
 
-document.getElementById("einheit").addEventListener("change",onClickLst())
-
 function getValues(){
     temp = parseInt(document.getElementById("temp").value);
     taup = parseInt(document.getElementById("taup").value);
@@ -41,6 +39,26 @@ function berechneHoehe(){
 function berchneDifferenz(){
     fielDiff = cloudHight - elev;
     document.getElementById("field").innerText = fielDiff +" " + unit;
+
+    const w = document.getElementById("warning");
+
+    const limitOK      = unit == "ft" ? 3000 : 900;
+    const limitCaution = unit == "ft" ? 1500 : 450;
+
+    if (fielDiff >= limitOK) {
+    w.className = "ok";
+    w.textContent = "✓ Wolkenuntergrenze ausreichend";
+    } else if (fielDiff >= limitCaution) {
+    w.className = "caution";
+    w.textContent = "△ Wolkenuntergrenze eingeschränkt";
+    } else {
+    w.className = "limit";
+    w.textContent = "⚠ Wolkenuntergrenze kritisch!";
+    }
 }
 
-//document.getElementById("einheit").addEventListener("change",onClickLst())
+
+
+onClickLst();
+
+document.getElementById("einheit").addEventListener("change",onClickLst)
