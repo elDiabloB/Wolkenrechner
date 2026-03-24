@@ -1,57 +1,47 @@
-<!doctype html>
+<!-- 
+    (C) 2026 Josef Weiß
+    Licensed under CC BY-NC 4.0
+    Commercial use prohibited without written permission
+-->
+<!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wolkenrechner</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <header></header>
-  <body>
-    <h1>Wolken<span>rechner</span></h1>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<header>
 
-    <div class="card">
-      <div class="warning-box">
-        &#9888; Nutzung auf eigene Gefahr - Nur zur Planung/Information
-      </div>
+</header>
+<body>
 
-      <div class="inputs">
-        <div class="input-group">
-          <label>Temperatur</label>
-          <input type="number" id="temp" step="1" placeholder="15" />
-          <span class="unit">°C</span>
-        </div>
-        <div class="input-group">
-          <label>Taupunkt</label>
-          <input type="number" id="taup" step="1" placeholder="8" />
-          <span class="unit">°C</span>
-        </div>
-        <div class="input-group">
-          <label>Platzhöhe MSL</label>
-          <input type="number" id="elev" placeholder="523" />
-          <span class="unit" id="aktEinh">ft</span>
-        </div>
-      </div>
-
-      <div class="limit-row">
-        <div class="input-group">
-          <label>Einheit</label>
-          <select id="einheit">
-            <option value="ft" selected>Fuß (ft)</option>
-            <option value="m">Meter (m)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button id="calcBtn" onclick="onClickBtn()">Berechnen</button>
-      </div>
-
-      <div class="results">
-        <div class="result-box box-head">
-          <div class="tag">Wolkenuntergrenze</div>
-          <div class="value" id="cloud">-</div>
-          <div class="sub">AGL</div>
+    <h1 class="heading">Wolkenrechner</h1>  
+    <h2>Für die Fliegerei</h2>
+    <h3 class="warning">Nutzung auf eigene Gefahr: Die Nutzung dieser App erfolgt ausschließlich auf eigene Gefahr.</h3>
+    <h3 class="warning">Diese App dient lediglich als Informations- und Planungshilfe.</h3>
+    <div>
+    <span>Bitte Bezugseinheit auswählen:</span>
+    <select id="einheit" onclick="onClickLst()">
+        <option value="ft">Fuß (ft)</option>
+        <option value="m" selected>Meter (m)</option>
+    </select>
+    </div>
+    <p>Bitte Werte eingeben:</p>
+    <div>
+        <table>
+            <tr><td><label>Temperatur</label></td><td><input type="number" id="temp" maxlength="3" size="6"><span style="margin-left: 5px;">° Celsius</span></td></tr>
+            <tr><td><label>Taupunkt</label></td><td><input type="number" id="taup" maxlength="3" size="6"><span style="margin-left: 5px;">° Celsius</span></td></tr>
+            <tr><td><label>Platzhöhe</label></td><td><input type="number" id="elev" maxlength="3" size="6"><span id="aktEinh" style="margin-left: 5px;"></span><span style="margin-left: 5px;">MSL</span></td></tr>
+        </table>
+    </div>
+    <br><br>
+    <button class="button" onclick="onClickBtn()">Berechnen</button>
+    <br><br>
+    <div style="display: flex; gap: 20px; justify-content: center;">
+        <div class="box">
+            <span class="description">Wolkenuntergrenze AGL</span>
+            <strong class="result" id ="cloud"></strong>
         </div>
         <div class="result-box box-cross">
           <div class="tag">Höhendifferenz</div>
